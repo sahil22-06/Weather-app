@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="card">
+    <div class="search">
+      <input type="text" id="cityInput" placeholder="Enter city">
+      <button onclick="searchCity()">Search</button>
+    </div>
+    <h2><i class="fas fa-map-marker-alt"></i> <span id="location">--</span></h2>
+    <h6 id="weather">---</h6>
+    <h4><span id="temp">--</span><sup>°C</sup></h4>
+    <div class="extra" id="humidity">Humidity: --%</div>
+    <div class="extra" id="wind">Wind: -- km/h</div>
+    <img src="" alt="Weather Icon" id="icon">
+    <button onclick="getDefaultWeather()" class="refresh"><i class="fas fa-sync"></i></button>
+  </div>
+
+  <script>
+    const API_KEY = '74c11e0656422a376e2c5f796e14a3b4'; // Your OpenWeatherMap API key
+    const iconElement = document.getElementById('icon');
+
+    function fetchWeatherByCity(city) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.cod !== 200) throw new Error(data.message);
+          document.getElementById('location').textContent = data.name;
+          document.getElementById('weather').textContent = data.weather[0].description;
+          document.getElementById('temp').textContent = Math.round(data.main.temp);
+          document.getElementById('humidity').textContent = `Humidity: ${data.main.humidity}%`;
+          document.getElementById('wind').textContent = `Wind: ${data.wind.speed} km/h`;
+          iconElement.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+          iconElement.alt = data.weather[0].main;
+          iconElement.classList.add('show');
+        })
+        .catch(err => {
+          console.error('Weather fetch error:', err);
+          alert('City not found');
+        });
+    }
+
+    function searchCity() {
+      const city = document.getElementById('cityInput').value;
+      if (city.trim()) {
+        fetchWeatherByCity(city);
+      }
+    }
+
+    function getDefaultWeather() {
+      fetchWeatherByCity('Delhi');
+    }
+
+    window.onload = getDefaultWeather;
+  </script>
+</body>
+</html>

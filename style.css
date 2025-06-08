@@ -1,0 +1,108 @@
+     * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #2c2c2c;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background-color: #3b3b3b;
+      color: white;
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 300px;
+      position: relative;
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card h6 {
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .card h4 {
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .extra {
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 0.3rem;
+    }
+
+        .card img {
+        width: 60px;
+        height: 60px;
+        margin: 1rem auto;
+        display: none;
+        }
+
+        .card img.show {
+        display: block;
+        }
+
+    .refresh {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .refresh i {
+      font-size: 24px;
+    }
+
+    .refresh:hover {
+      background-color: #555;
+    }
+
+    .search {
+      margin-bottom: 1.5rem;
+    }
+
+    .search input {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      margin-right: 0.5rem;
+      width: 70%;
+    }
+
+    .search button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+    }
